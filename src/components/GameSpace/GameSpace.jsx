@@ -30,10 +30,32 @@ class GameSpace extends Component {
     super(props);
     this.state = {
       selectedGesture: null,
-      opponentGesture: null
+      opponentGesture: null,
+      gameResult: null,
+      resultMessage: null
     };
   }
 
+  componentWillMount() {
+    const { socket } = this.props;
+    socket.on(events.GAME_OWER, async gameResult => {
+      console.log('gameResult:', gameResult);
+
+      await this.setState({ gameResult });
+
+      const player = gameResult.players.find(player => player.id === socket.id);
+      const opponent = gameResult.players.find(
+        player => player.id !== socket.id
+      );
+      console.log('player:', player);
+      console.log('opponent:', opponent);
+
+      const resultMessage = `You ${player.winner ? 'winner' : 'loser'}: ${
+        gameResult.message
+      } `;
+      await this.setState({ resultMessage });
+    });
+  }
   //
   async handlerSelectGesture({ currentTarget }) {
     // console.log('currentTarget:', currentTarget);
@@ -66,6 +88,7 @@ class GameSpace extends Component {
           selectedGesture={this.state.selectedGesture}
           opponentGesture={this.state.opponentGesture}
         />
+        <h1>{this.state.resultMessage}</h1>
         <ul className="gestures">
           {gestures.map(item => (
             <li
