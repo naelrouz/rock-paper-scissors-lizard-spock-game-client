@@ -1,0 +1,30 @@
+.game_space {
+  /* display: flex;
+  flex-flow: column;
+
+  width: 100vw;
+  height: 100vh; */
+}
+
+.gestures {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+
+  padding: 20px 0;
+  margin: 0;
+}
+
+.gestures__item {
+  list-style: none;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.gestures__item img {
+  width: 100%;
+}
+
+.gestures__item.active {
+  color: red;
+}

@@ -1,0 +1,27 @@
+.selected_gestures {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+
+  padding: 40px;
+  margin: 0;
+}
+
+.selected_gestures__item {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+
+  width: 50%;
+  list-style: none;
+  /* padding: 10%; */
+  margin: 20px;
+}
+.selected_gestures__item img {
+  width: 100%;
+}
+
+.selected_gestures__item h2 {
+  text-align: center;
+  color: antiquewhite;
+}
