@@ -46,7 +46,8 @@ class GameSpace extends Component {
     const gesture = currentTarget.getAttribute('data-gesture');
 
     await this.setState({ selectedGesture: gesture });
-    console.log('selectedGesture:', this.state.selectedGesture);
+    await console.log('selectedGesture:', this.state.selectedGesture);
+
     const {
       props: { socket, gameRoomId }
     } = this;

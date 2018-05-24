@@ -5,7 +5,7 @@ import GameRoom from './components/GameRoom/GameRoom';
 
 import './App.css';
 
-// TODO subscribe to StartGame
+// TODO use Redux !
 
 class App extends Component {
   render() {

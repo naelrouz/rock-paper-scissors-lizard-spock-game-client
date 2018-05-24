@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import io from 'socket.io-client';
 
 import events from '../../eventConstants';
@@ -12,9 +14,9 @@ import './GameRoomCreating.css';
 // redirect when the second player joins
 
 class GameRoomCreating extends Component {
-  constructor() {
-    super();
-    // subscribeToTimer(500, (err, timestamp) => (this.state.timestamp = 0));
+  constructor(props) {
+    super(props);
+    this.store = this.props.store;
 
     this.state = {
       socket: null,
@@ -37,7 +39,7 @@ class GameRoomCreating extends Component {
     socket.on('connect', () => {
       console.log('Connected');
     });
-    socket.on('disconnect', this.reconnectUserInfo);
+    socket.on('disconnect', () => console.log('Disconnect'));
 
     socket.emit(events.CREATE_GAME_ROOM);
 
