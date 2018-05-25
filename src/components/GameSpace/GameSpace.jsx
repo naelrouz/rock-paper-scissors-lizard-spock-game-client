@@ -32,7 +32,8 @@ class GameSpace extends Component {
       selectedGesture: null,
       opponentGesture: null,
       gameResult: null,
-      resultMessage: null
+      resultMessage: null,
+      errorMessage: null
     };
   }
 
@@ -50,13 +51,31 @@ class GameSpace extends Component {
       console.log('player:', player);
       console.log('opponent:', opponent);
 
-      const resultMessage = `You ${player.winner ? 'winner' : 'loser'}: ${
+      let playerStatus = 'Draw:';
+
+      if (player.winner) {
+        playerStatus = 'You winner:';
+      }
+      if (opponent.winner) {
+        playerStatus = 'You loser:';
+      }
+
+      const resultMessage = `${playerStatus} ${
         gameResult.message
+          ? gameResult.message
+          : 'there is no winner and no loser'
       } `;
+
       await this.setState({ resultMessage });
+      await this.setState({ opponentGesture: opponent.selectedGesture });
+    });
+
+    socket.on(events.ERROR, async error => {
+      const errorMessage = null;
+      await this.setState({ errorMessage });
     });
   }
-  //
+  // gesture selection
   async handlerSelectGesture({ currentTarget }) {
     // console.log('currentTarget:', currentTarget);
 
@@ -73,14 +92,11 @@ class GameSpace extends Component {
     const {
       props: { socket, gameRoomId }
     } = this;
+    // message to the server selected gesture
     socket.emit(events.SELECT_GESTURE, { gesture, gameRoomId });
   }
 
   render() {
-    // const gesturesItemClasses = classNames({
-    //   gestures__item: true
-    // });
-
     return (
       <div className="game_space">
         <SelectedGestures
@@ -89,6 +105,8 @@ class GameSpace extends Component {
           opponentGesture={this.state.opponentGesture}
         />
         <h1>{this.state.resultMessage}</h1>
+        <h1>{this.state.errorMessage}</h1>
+
         <ul className="gestures">
           {gestures.map(item => (
             <li
@@ -107,19 +125,3 @@ class GameSpace extends Component {
 }
 
 export default GameSpace;
-
-// <li className="gestures__item_rock" data-gesture-name="rock">
-// Rock
-// </li>
-// <li className="gestures__item_paper" data-gesture-name="paper">
-// Paper
-// </li>
-// <li className="gestures__item_scissors" data-gesture-name="scissors">
-// Scissors
-// </li>
-// <li className="gestures__item_spock" data-gesture-name="spock">
-// Spock
-// </li>
-// <li className="gestures__item_lizard" data-gesture-name="lizard">
-// Lizard
-// </li>

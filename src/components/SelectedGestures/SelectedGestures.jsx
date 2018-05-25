@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
-// import classNames from 'classnames';
-//
 
 import './SelectedGestures.css';
 
 import waitingImg from '../../img/gestures/waiting.png';
-
-import events from '../../eventConstants';
-
-// NOTE game process
-// - select gesture
-// - not selected gestures > hide
 
 class GameSpace extends Component {
   showWiner() {
@@ -21,8 +13,6 @@ class GameSpace extends Component {
 
   render() {
     const { selectedGesture, opponentGesture, gestures } = this.props;
-
-    // gestures.find(el => el.name === selectedGesture).img
 
     console.log('gestures:', gestures);
 
@@ -45,7 +35,11 @@ class GameSpace extends Component {
             <h2>Opponent chosen</h2>
 
             <img
-              src={opponentGesture ? opponentGesture : waitingImg}
+              src={
+                opponentGesture
+                  ? gestures.find(el => el.name === opponentGesture).img
+                  : waitingImg
+              }
               alt="selected gesture player"
             />
           </li>
@@ -56,19 +50,3 @@ class GameSpace extends Component {
 }
 
 export default GameSpace;
-
-// <li className="gestures__item_rock" data-gesture-name="rock">
-// Rock
-// </li>
-// <li className="gestures__item_paper" data-gesture-name="paper">
-// Paper
-// </li>
-// <li className="gestures__item_scissors" data-gesture-name="scissors">
-// Scissors
-// </li>
-// <li className="gestures__item_spock" data-gesture-name="spock">
-// Spock
-// </li>
-// <li className="gestures__item_lizard" data-gesture-name="lizard">
-// Lizard
-// </li>
