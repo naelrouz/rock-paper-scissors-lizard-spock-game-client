@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import classNames from 'classnames';
-//
+import { CSSTransitionGroup } from 'react-transition-group'; // ES6
 
 import './GameSpace.css';
 import SelectedGestures from '../SelectedGestures/SelectedGestures';
@@ -31,7 +30,7 @@ class GameSpace extends Component {
     this.state = {
       selectedGesture: null,
       opponentGesture: null,
-      gameResult: null,
+      // gameResult: null,
       resultMessage: null,
       errorMessage: null
     };
@@ -79,6 +78,10 @@ class GameSpace extends Component {
   async handlerSelectGesture({ currentTarget }) {
     // console.log('currentTarget:', currentTarget);
 
+    if (this.state.selectedGesture) {
+      return;
+    }
+
     Array.from(currentTarget.parentNode.childNodes).forEach(el => {
       el.classList.remove('active');
     });
@@ -104,8 +107,10 @@ class GameSpace extends Component {
           selectedGesture={this.state.selectedGesture}
           opponentGesture={this.state.opponentGesture}
         />
-        <h1>{this.state.resultMessage}</h1>
-        <h1>{this.state.errorMessage}</h1>
+        <h1 className="game_space__result_message">
+          {this.state.resultMessage}
+        </h1>
+        {/* <h1>{this.state.errorMessage}</h1> */}
 
         <ul className="gestures">
           {gestures.map(item => (

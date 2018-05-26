@@ -1,4 +1,6 @@
 .game_space {
+  max-width: 1000px;
+  margin: 0 auto;
   /* display: flex;
   flex-flow: column;
 
@@ -6,11 +8,16 @@
   height: 100vh; */
 }
 
+.game_space__result_message {
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0;
+}
+
 .gestures {
   display: flex;
   flex-flow: row;
   justify-content: center;
-
   padding: 20px 0;
   margin: 0;
 }
@@ -19,6 +26,18 @@
   list-style: none;
   cursor: pointer;
   margin: 10px;
+  opacity: .8;
+  transition: all 100ms ease-in
+}
+
+.gestures__item:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.gestures__item.active {
+  transform: scale(1.1);
+  opacity: 1;
 }
 
 .gestures__item img {
@@ -27,4 +46,22 @@
 
 .gestures__item.active {
   color: red;
+}
+
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
 }

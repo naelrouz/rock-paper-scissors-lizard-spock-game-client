@@ -20,8 +20,6 @@ class GameSpace extends Component {
       <div className="game_space">
         <ul className="selected_gestures">
           <li className="selected_gestures__item player_select">
-            <h2>You chosen</h2>
-
             <img
               src={
                 selectedGesture
@@ -30,10 +28,9 @@ class GameSpace extends Component {
               }
               alt="selected gesture player"
             />
+            <h2>You chosen</h2>
           </li>
           <li className="selected_gestures__item player_select">
-            <h2>Opponent chosen</h2>
-
             <img
               src={
                 opponentGesture
@@ -42,6 +39,7 @@ class GameSpace extends Component {
               }
               alt="selected gesture player"
             />
+            <h2>Opponent chosen</h2>
           </li>
         </ul>
       </div>

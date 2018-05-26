@@ -2,8 +2,7 @@
   display: flex;
   flex-flow: row;
   justify-content: center;
-
-  padding: 40px;
+  padding: 40px 40px 0 40px;
   margin: 0;
 }
 
@@ -11,17 +10,18 @@
   display: flex;
   flex-flow: column;
   justify-content: center;
-
   width: 50%;
   list-style: none;
   /* padding: 10%; */
-  margin: 20px;
+  margin: 20px 60px 20px 60px;
 }
+
 .selected_gestures__item img {
   width: 100%;
 }
 
 .selected_gestures__item h2 {
   text-align: center;
-  color: antiquewhite;
+  color: #fff;
+  text-transform: up
 }

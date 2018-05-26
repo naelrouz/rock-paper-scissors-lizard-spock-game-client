@@ -1,2 +1,19 @@
 .game_room_creating {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 1000px;
+    height: 100vh;
+    margin: 0 auto
+}
+
+.game_room_creating__logo {
+    border-radius: 100%;
+    margin-right: 40px;
+    max-width: 200px;
+}
+
+.game_room_creating__game_room_link a {
+    color: #fff;
 }

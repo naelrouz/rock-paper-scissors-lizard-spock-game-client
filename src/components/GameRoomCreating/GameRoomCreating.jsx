@@ -6,6 +6,7 @@ import io from 'socket.io-client';
 import events from '../../eventConstants';
 
 import './GameRoomCreating.css';
+import logo from '../../img/logo.jpg';
 
 // TODO GameRoomCreating
 // create GameRoom
@@ -65,8 +66,10 @@ class GameRoomCreating extends Component {
 
     return (
       <div className="game_room_creating">
+        <img className="game_room_creating__logo" src={logo} alt="logo" />
+
         {gameRoomId ? (
-          <div className="game_room__link">
+          <div className="game_room_creating__game_room_link">
             <h2>{'Link to the GameRoom:'}</h2>
             <h2>
               <a

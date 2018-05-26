@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import './GameRoom.css';
 
 import GameSpace from '../GameSpace/GameSpace';
-import ChatContainer from '../ChatContainer/ChatContainer';
+import GameRoomChat from '../GameRoomChat/GameRoomChat';
 
 // import logo from './logo.svg';
 // import { subscribeToTimer } from '../../api';
@@ -63,7 +63,7 @@ class GameRoom extends Component {
       <div className="game_room">
         <div>
           <GameSpace socket={socket} gameRoomId={gameRoomId} />
-          <ChatContainer />
+          <GameRoomChat socket={socket} gameRoomId={gameRoomId} />
         </div>
       </div>
     );
