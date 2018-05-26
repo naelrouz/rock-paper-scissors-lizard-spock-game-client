@@ -10,15 +10,7 @@ class GameRoomChat extends Component {
     super();
 
     this.state = {
-      messageList: [
-        {
-          author: 'Bot',
-          type: 'text',
-          data: {
-            text: 'Welcome to the game room'
-          }
-        }
-      ]
+      messageList: []
     };
   }
 
@@ -27,6 +19,7 @@ class GameRoomChat extends Component {
 
     // subscribe to a new chat messages
     socket.on(events.NEW_MESSAGE, async ({ text }) => {
+      console.log('NEW_MESSAGE :', text);
       await this.setState({
         messageList: [
           ...this.state.messageList,
@@ -41,12 +34,12 @@ class GameRoomChat extends Component {
   }
 
   _onMessageWasSent(message) {
-    this.setState({
-      messageList: [...this.state.messageList, message]
-    });
-  }
+    console.log('_onMessageWasSent.message', message);
 
-  _sendMessage(text) {
+    const {
+      data: { text }
+    } = message;
+
     if (text.length < 0) {
       return; // if the message is empty
     }
@@ -54,19 +47,38 @@ class GameRoomChat extends Component {
     const { socket, gameRoomId } = this.props;
 
     //  send message to the server
-    socket.emit(events.SEND_MESSAGE, { text, gameRoomId });
+    socket.emit('m', { text, gameRoomId });
+
+    console.log('mmmmmmmm');
 
     this.setState({
-      messageList: [
-        ...this.state.messageList,
-        {
-          author: 'me',
-          type: 'text',
-          data: { text }
-        }
-      ]
+      messageList: [...this.state.messageList, message]
     });
   }
+
+  // _sendMessage(text) {
+  //   console.log('_sendMessage');
+
+  //   if (text.length < 0) {
+  //     return; // if the message is empty
+  //   }
+
+  //   const { socket, gameRoomId } = this.props;
+
+  //   //  send message to the server
+  //   socket.emit(events.SEND_MESSAGE, { text, gameRoomId });
+
+  //   this.setState({
+  //     messageList: [
+  //       ...this.state.messageList,
+  //       {
+  //         author: 'me',
+  //         type: 'text',
+  //         data: { text }
+  //       }
+  //     ]
+  //   });
+  // }
 
   render() {
     return (
