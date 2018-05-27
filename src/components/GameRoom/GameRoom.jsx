@@ -71,9 +71,3 @@ class GameRoom extends Component {
 }
 
 export default GameRoom;
-
-// <Login
-//             socket={socket}
-//             setUser={this.setUser}
-//             verified={this.setUser}
-//           />

@@ -8,12 +8,6 @@ import events from '../../eventConstants';
 import './GameRoomCreating.css';
 import logo from '../../img/logo.jpg';
 
-// TODO GameRoomCreating
-// create GameRoom
-// get gameRoomId
-// show link to GameRoom
-// redirect when the second player joins
-
 class GameRoomCreating extends Component {
   constructor(props) {
     super(props);

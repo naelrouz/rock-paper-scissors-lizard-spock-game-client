@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.5",
+    "node-static": "^0.7.10",
     "react": "^16.3.2",
     "react-chat-window": "^1.0.8",
     "react-dom": "^16.3.2",
@@ -13,12 +14,11 @@
     "react-transition-group": "1.x",
     "redux": "^4.0.0",
     "socket.io-client": "^2.1.1",
-    "static": "^2.0.0",
     "uuid": "^3.2.1"
   },
   "scripts": {
     "dev": "react-scripts start",
-    "start": "react-scripts build",
+    "bl": "react-scripts build  & static build -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
