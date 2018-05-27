@@ -21,7 +21,8 @@ class GameRoomCreating extends Component {
 
     this.state = {
       socket: null,
-      gameRoomId: null
+      gameRoomId: null,
+      gameRoomLink: null
     };
   }
 
@@ -45,7 +46,13 @@ class GameRoomCreating extends Component {
     socket.emit(events.CREATE_GAME_ROOM);
 
     socket.on(events.NEW_GAME_ROOM_CREATED, ({ gameRoomId }) => {
-      this.setState({ gameRoomId });
+      const { protocol, hostname, port } = window.location;
+
+      const gameRoomLink = `${protocol}//${hostname}${
+        port ? `:${port}` : ''
+      }/game-room/${gameRoomId}`;
+      this.setState({ gameRoomId, gameRoomLink });
+
       console.log('state.gameRoomId', this.state.gameRoomId);
     });
 
@@ -62,7 +69,7 @@ class GameRoomCreating extends Component {
     // socket.emit(events.CREATE_GAME_ROOM);
   }
   render() {
-    const { gameRoomId } = this.state;
+    const { gameRoomId, gameRoomLink } = this.state;
 
     return (
       <div className="game_room_creating">
@@ -72,9 +79,7 @@ class GameRoomCreating extends Component {
           <div className="game_room_creating__game_room_link">
             <h2>{'Link to the GameRoom:'}</h2>
             <h2>
-              <a
-                href={`http://localhost:3000/game-room/${gameRoomId}`}
-              >{`http://localhost:3000/game-room/${gameRoomId}`}</a>
+              <a href={gameRoomLink}>{gameRoomLink}</a>
             </h2>
             <h2>
               {
